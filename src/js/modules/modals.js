@@ -1,12 +1,12 @@
 const modals = () => {
-    function bindModal(triggerSelector, modalSelector, closeSelector) {
-        const trigger = document.querySelectorAll(triggerSelector);
+    const bindModal = (triggersSelector, modalSelector, closeSelector) => {
+        const triggers = document.querySelectorAll(triggersSelector);
         const modal = document.querySelector(modalSelector);
         const close = document.querySelector(closeSelector);
 
-        trigger.forEach(item => {
+        triggers.forEach(trigger => {
 
-            item.addEventListener('click', function(e){
+            trigger.addEventListener('click', (e) => {
                 if (e.target) {
                     e.preventDefault();
                 }
@@ -16,20 +16,28 @@ const modals = () => {
             }) 
         })
 
-        close.addEventListener('click', () => {
+        const closeModal = () => {
             modal.style.display = "none";
-            document.body.style.overflow = ""; 
-        })
+            document.body.style.overflow = "";
+        }
+
+        close.addEventListener('click', () => closeModal());
 
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
-                modal.style.display = "none";
-                document.body.style.overflow = "";
+               closeModal();
             }
         })
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+               closeModal();
+            }
+        })
+        
     }
 
-    function showModalByTime(selector, time) {
+    const showModalByTime = (selector, time) => {
         setTimeout(() => {
                 document.querySelector(selector).style.display = "block";
             document.body.style.overflow = "hidden"; 
