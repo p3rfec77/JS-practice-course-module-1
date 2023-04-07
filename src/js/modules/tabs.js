@@ -37,25 +37,12 @@ const tabs = ({headerSelector, tabsSelector, tabsContentSelector, activeClass}) 
     hideTabContent();
     showTabContent();
 
-    header.addEventListener('click', (e) => {
-        const target = e.target;
-        if (target &&
-            (target.classList.contains(tabsSelector.replace(/\./, '')) ||
-        target.parentNode.classList.contains(tabsSelector.replace(/\./, '')))) {
-            tabs.forEach((tab, i) => {
-                if (target == tab || target.parentNode == tab) {
-                    hideTabContent();
-                    showTabContent(i);
-                }
-            })
-        }
-    })
+   
+    const findCorrectTab = "(target.classList.contains(tabsSelector.replace(/\./, '')) || target.parentNode.classList.contains(tabsSelector.replace(/\./, '')))";
 
-    header.addEventListener('keydown', (e) => {
+   const changeTabs = (action) => { header.addEventListener(action, (e) => {
         const target = e.target;
-        if (target && (e.key === 'Enter') &&
-            (target.classList.contains(tabsSelector.replace(/\./, '')) ||
-        target.parentNode.classList.contains(tabsSelector.replace(/\./, '')))) {
+        if (target && findCorrectTab.replaceAll('"', '') || (e.key === 'Enter')) {
             tabs.forEach((tab, i) => {
                 if (target == tab || target.parentNode == tab) {
                     hideTabContent();
@@ -64,6 +51,10 @@ const tabs = ({headerSelector, tabsSelector, tabsContentSelector, activeClass}) 
             })
         }
     })
+   }
+
+    changeTabs('click');
+    changeTabs('keypress');
 };
 
 export {glazingSelectors, decorationSelectors, tabs};
