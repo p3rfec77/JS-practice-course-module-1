@@ -1,4 +1,3 @@
-import { event } from "jquery";
 
 const glazingSelectors = {
     headerSelector: '.glazing_slider',
