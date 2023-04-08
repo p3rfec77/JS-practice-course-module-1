@@ -20,6 +20,9 @@ const forms = () => {
         document.querySelector('.status').textContent = message.loading;
         const response = await fetch(url, {
             method: "POST",
+            headers: {
+                'Content-type': 'application/json'
+            },
             body: JSON.stringify(data),
         });
 
