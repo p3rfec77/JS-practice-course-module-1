@@ -1,19 +1,4 @@
-
-const glazingSelectors = {
-    headerSelector: '.glazing_slider',
-    tabsSelector: '.glazing_block',
-    tabsContentSelector: '.glazing_content',
-    activeClass: 'active',
-}
-
-const decorationSelectors = {
-    headerSelector: '.decoration_slider',
-    tabsSelector: '.no_click',
-    tabsContentSelector: '.decoration_content > div > div',
-    activeClass: 'after_click',
-}
-
-const tabs = ({headerSelector, tabsSelector, tabsContentSelector, activeClass}) => {
+const tabs = ({headerSelector, tabsSelector, tabsContentSelector, activeClass, display = 'block'}) => {
     const header = document.querySelector(headerSelector);
     const tabs = document.querySelectorAll(tabsSelector);
     const tabsContent = document.querySelectorAll(tabsContentSelector);
@@ -29,7 +14,7 @@ const tabs = ({headerSelector, tabsSelector, tabsContentSelector, activeClass}) 
     }
 
     const showTabContent = (i = 0) => {
-        tabsContent[i].style.display = 'block';
+        tabsContent[i].style.display = display;
         tabs[i].classList.add(activeClass);
     }
     
@@ -56,4 +41,4 @@ const tabs = ({headerSelector, tabsSelector, tabsContentSelector, activeClass}) 
     changeTabs('keypress');
 };
 
-export {glazingSelectors, decorationSelectors, tabs};
+export default tabs;
