@@ -46,7 +46,6 @@ const forms = (state) => {
             }
             const data = {};
             formData.forEach((value, key) => data[key] = value);
-            console.log(data);
 
             postData('https://simple-server-cumz.onrender.com/api/data', data)
                 .then(response => {
