@@ -13,6 +13,13 @@ body {
   color: #000000;
 }
 
+a:focus,
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3a97f9;
+}
+
 .status {
   display: block;
   color: red;
@@ -1079,8 +1086,8 @@ textarea:focus {
   font-weight: 500;
 }
 
-.popup_calc_profile_content label:focus-within {
-  border-bottom: 1px solid black;
+.popup_calc_profile_content .checkbox:focus + .checkbox-custom {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 2px 5px #3a97f9;
 }
 
 .popup_calc_profile_content img {
