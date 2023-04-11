@@ -1079,6 +1079,10 @@ textarea:focus {
   font-weight: 500;
 }
 
+.popup_calc_profile_content label:focus-within {
+  border-bottom: 1px solid black;
+}
+
 .popup_calc_profile_content img {
   display: block;
   margin-left: 50%;
