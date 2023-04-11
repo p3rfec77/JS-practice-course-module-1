@@ -1,15 +1,11 @@
+import closeAllModals from "./closeAllModals";
+
 const modals = () => {
     const bindModal = (triggersSelector, modalSelector, closeSelector, closeClickOverlay = true) => {
         const triggers = document.querySelectorAll(triggersSelector);
         const modal = document.querySelector(modalSelector);
         const close = document.querySelector(closeSelector);
         const windows = document.querySelectorAll('[data-modal]');
-
-      const closeAllModals = () => {
-        windows.forEach((window) => {
-            window.style.display = 'none';
-        })
-    }
 
         triggers.forEach(trigger => {
 
@@ -25,22 +21,17 @@ const modals = () => {
             }) 
         })
 
-        const closeModal = () => {
-            closeAllModals();
-            document.body.style.overflow = "";
-        }
-
-        close.addEventListener('click', () => closeModal());
+        close.addEventListener('click', () =>  closeAllModals());
 
         modal.addEventListener('click', (e) => {
             if (e.target === modal && closeClickOverlay) {
-               closeModal();
+                closeAllModals();
             }
         })
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-               closeModal();
+                closeAllModals();
             }
         })
         

@@ -1,4 +1,5 @@
 import checkNumInputs from "./checkNumInputs";
+import closeAllModals from "./closeAllModals";
 
 const forms = (state) => {
     const allForms = document.querySelectorAll('form');
@@ -50,13 +51,16 @@ const forms = (state) => {
             postData('https://simple-server-cumz.onrender.com/api/data', data)
                 .then(response => {
                     statusMessage.textContent = message.success;
+                    setTimeout(() => {
+                        closeAllModals();
+                    }, 5000);
                 })
                 .catch(() => statusMessage.textContent = message.failure)
                 .finally(() => {
                     clearInputs();
                     setTimeout(() => {
                         statusMessage.remove();
-                    }, 10000);
+                    }, 5000);
                 })
         });
     });
