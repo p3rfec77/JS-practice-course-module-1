@@ -1,14 +1,11 @@
+import checkNumInputs from "./checkNumInputs";
+import closeAllModals from "./closeAllModals";
 
-const forms = () => {
+const forms = (state) => {
     const allForms = document.querySelectorAll('form');
     const inputs = document.querySelectorAll('input');
-    const phoneInputs = document.querySelectorAll('input[name="user_phone"]');
 
-    phoneInputs.forEach((input) => {
-        input.addEventListener('input', () => {
-            input.value = input.value.replace(/\D/, '');
-        });
-    })
+    checkNumInputs('input[name="user_phone"]');
 
     const message = {
         loading: 'загрузка...',
@@ -43,19 +40,27 @@ const forms = () => {
             form.appendChild(statusMessage);
 
             const formData = new FormData(form);
+            if(form.getAttribute('data-calc') === 'end') {
+                for (let key in state) {
+                    formData.append(key, state[key]);
+                }
+            }
             const data = {};
             formData.forEach((value, key) => data[key] = value);
 
             postData('https://simple-server-cumz.onrender.com/api/data', data)
                 .then(response => {
                     statusMessage.textContent = message.success;
+                    setTimeout(() => {
+                        closeAllModals();
+                    }, 5000);
                 })
                 .catch(() => statusMessage.textContent = message.failure)
                 .finally(() => {
                     clearInputs();
                     setTimeout(() => {
                         statusMessage.remove();
-                    }, 10000);
+                    }, 5000);
                 })
         });
     });
