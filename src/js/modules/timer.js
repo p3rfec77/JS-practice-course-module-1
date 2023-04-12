@@ -1,12 +1,6 @@
 const timer = (id, deadline) => {
 
-    const addZero = (num) => {
-        if (num <= 9) {
-            return '0' + num;
-        } else {
-            return num;
-        }
-    };
+    const addZero = (num) => num <= 9 ? ('0' + num) : num;
 
     const getTimeRemaining = (endtime) => {
         const time = Date.parse(endtime) - Date.parse(new Date());
@@ -14,14 +8,15 @@ const timer = (id, deadline) => {
         const minutes = Math.floor((time / 1000 / 60) % 60);
         const hours = Math.floor((time / (1000 * 60 * 60)) % 24);
         const days = Math.floor((time / (1000 * 60 * 60 * 24)));
-
-        return {
-            'total': time,
-            'days': days,
-            'hours': hours,
-            'minutes': minutes,
-            'seconds': seconds
+        const timings = {
+            time,
+            days,
+            hours,
+           minutes,
+           seconds
         };
+
+        return timings;
     };
 
     const setClock = (selector, endtime) => {
@@ -33,7 +28,7 @@ const timer = (id, deadline) => {
             minutes.textContent = addZero(t.minutes);
             seconds.textContent = addZero(t.seconds);
 
-            if (t.total <= 0) {
+            if (t.time <= 0) {
                 days.textContent = '00';
                 hours.textContent = '00';
                 minutes.textContent = '00';
