@@ -9,7 +9,7 @@ import images from "./modules/images";
 window.addEventListener('DOMContentLoaded', () => {
    
    const modalState = {};
-   let deadline = '2023-04-15';
+   const deadline = '2023-04-15';
 
    changeModalState(modalState);
    
