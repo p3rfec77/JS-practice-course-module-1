@@ -3,10 +3,14 @@ import modals from "./modules/modals";
 import tabs from "./modules/tabs";
 import forms from "./modules/forms";
 import changeModalState from "./modules/changeModalState";
+import timer from "./modules/timer";
+import images from "./modules/images";
 
 window.addEventListener('DOMContentLoaded', () => {
    
    const modalState = {};
+   let deadline = '2023-04-15';
+
    changeModalState(modalState);
    
     modals();
@@ -37,4 +41,8 @@ window.addEventListener('DOMContentLoaded', () => {
     tabs(balconSelectors);
 
     forms(modalState);
+
+    timer('.container1', deadline);
+
+    images();
 })
